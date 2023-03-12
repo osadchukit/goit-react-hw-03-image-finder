@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { toast } from 'react-hot-toast';
 import {
   Header,
   SearchForm,
@@ -18,6 +19,9 @@ export class Searchbar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (!this.state.value) {
+      return toast.error('Error!');
+    }
     this.props.onSearch(this.state.value);
     this.setState({ value: '' });
   };
